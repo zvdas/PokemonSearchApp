@@ -1,4 +1,4 @@
-import pokemonServices from "../../services/pokemon-services";
+import pokemonServices from "../../services/pokemon-service";
 import { createAPokemon, getAllPokemons, getPokemonById, updatePokemonById, deletePokemonById, getPokemonByGeneration, getSelectedDataType } from "./pokemon-methods";
 
 export const createPokemon = (pokemons) => {

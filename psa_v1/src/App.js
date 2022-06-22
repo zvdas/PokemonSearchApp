@@ -6,7 +6,6 @@ import HomeComponent from './user_defined/components/home';
 function App() {
   return (
     <div>
-      <h1>Hi there</h1>
       <HomeComponent/>
     </div>
   );
