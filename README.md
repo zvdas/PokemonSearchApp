@@ -2,7 +2,10 @@
 
 ![Pokébiome 004: Charmander: pinterest](https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif | width=100) 
 
-- <img src="https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif" alt="" width="200" height="200"/>
+<div>
+    <img src="https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif" alt="" width="200" height="200"/>
+    <img src="https://raw.githubusercontent.com/zvdas/PokemonSearchApp/main/psa_v1/assets/react-native-UX-design.gif" alt="" width="200" height="200"/>
+</div
 
 ![react](https://raw.githubusercontent.com/zvdas/PokemonSearchApp/main/psa_v1/assets/react-native-UX-design.gif | width=100)
 photo credit : Pokébiome 004: Charmander (Pinterest)
