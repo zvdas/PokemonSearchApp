@@ -1,8 +1,8 @@
 # Pokémon Search Application
 
 <div>
-    <img src="https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif" alt="" width="600" height="600"/>
-    <img src="https://raw.githubusercontent.com/zvdas/PokemonSearchApp/main/psa_v1/assets/react-native-UX-design.gif" alt="" width="600" height="600"/>
+    <img src="https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif" alt="" width="500" height="500"/>
+    <img src="https://raw.githubusercontent.com/zvdas/PokemonSearchApp/main/psa_v1/assets/react-native-UX-design.gif" alt="" width="500" height="500"/>
 </div
 
 photo credit : Pokébiome 004: Charmander (Pinterest)
