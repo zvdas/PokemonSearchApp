@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import payload from './event_reducer';
+import payload from './pokemon-reducer';
 
 export default combineReducers({
     payload : payload

@@ -1,74 +1,61 @@
-import EventServices from "../../services/event-services"
-import { createAnEvent, deleteEventById, getAllEvents, getEventByDate, getEventById, getEventByVenue, getSelectedDataType, updateEventById } from "./event_methods";
+import pokemonServices from "../../services/pokemon-services";
+import { createAPokemon, getAllPokemons, getPokemonById, updatePokemonById, deletePokemonById, getPokemonByGeneration, getSelectedDataType } from "./pokemon-methods";
 
-export const createEvent = (events) => {
+export const createPokemon = (pokemons) => {
     return (dispatch) =>{
-        return EventServices.create({events})
+        return pokemonServices.create({pokemons})
             .then(response => {
-                dispatch(createAnEvent(response.data))
+                dispatch(createAPokemon(response.data))
             })
             .catch(err=>{throw(err)})
     }
 }
 
-export const retrieveEvents = () => {
+export const retrievePokemons = () => {
     return (dispatch) => {
-        return EventServices.getAll()
+        return pokemonServices.getAll()
             .then(response => {
-                console.log("in event actions, get all", response.data)
-                dispatch(getAllEvents(response.data))
+                dispatch(getAllPokemons(response.data))
             })
             .catch(err => {throw(err)})
     }
 }
 
-export const findEventByID = (id) => {
+export const findPokemonByID = (id) => {
     return (dispatch) => {
-        return EventServices.get(id)
+        return pokemonServices.get(id)
             .then(response => {
-                dispatch(getEventById(response.data))
+                dispatch(getPokemonById(response.data))
             })
             .catch(err => {throw(err)})
     }
 }
 
-export const updateEvent = (id, data) => {
+export const updatePokemon = (id, data) => {
     return (dispatch) => {
-        return EventServices.update(id, data)
+        return pokemonServices.update(id, data)
         .then(response => {
-            dispatch(updateEventById(response.data))
+            dispatch(updatePokemonById(response.data))
         })
         .catch(err => {throw(err)})
     }
 }
 
-export const deleteEvent = (id) => {
-    console.log(`inside event actions : delete : id : ${id}`)
+export const deletePokemon = (id) => {
     return (dispatch) => {
-        return EventServices.delete(id)
+        return pokemonServices.delete(id)
         .then(response => {
-            console.log(`inside event actions : response.data : ${response.data}`)
-            dispatch(deleteEventById(response.data))
+            dispatch(deletePokemonById(response.data))
         })
         .catch(err => {throw(err)})
     }
 }
 
-export const findEventByDate = (date) => {
+export const findPokemonByGeneration = (generation) => {
     return (dispatch) => {
-        return EventServices.findByDate(date)
+        return pokemonServices.findByGeneration(generation)
         .then(response => {
-            dispatch(getEventByDate(response.data))
-        })
-        .catch(err => {throw(err)})
-    }
-} 
-
-export const findEventByVenue = (venue) => {
-    return (dispatch) => {
-        return EventServices.findByVenue(venue)
-        .then(response => {
-            dispatch(getEventByVenue(response.data))
+            dispatch(getPokemonByGeneration(response.data))
         })
         .catch(err => {throw(err)})
     }

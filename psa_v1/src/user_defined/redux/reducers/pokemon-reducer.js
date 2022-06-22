@@ -1,19 +1,18 @@
-import { CREATE_EVENT, DELETE_EVENT, RETRIEVE_EVENTS, SELECT_DATATYPE, UPDATE_EVENT } from "../actions/event_types";
+import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, UPDATE_POKEMON, SELECT_DATATYPE } from "../actions/pokemon-types";
 
-export default function EventReducer(state=[], action){
+export default function PokemonReducer(state=[], action){
     switch(action.type){
-        case CREATE_EVENT:
+        case CREATE_POKEMON:
             return [...state, action.payload]
-        case RETRIEVE_EVENTS:
+        case RETRIEVE_POKEMONS:
             return action.payload
-        case UPDATE_EVENT:
+        case UPDATE_POKEMON:
             if(state.id === action.payload.id){
                 return {...state, ...action.payload}
             }else{
                 return state
             }
-        case DELETE_EVENT:
-            console.log("in event reducer delete events:",action.payload)
+        case DELETE_POKEMON:
             return action.payload
         case SELECT_DATATYPE:
             return action.payload
