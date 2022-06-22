@@ -79,10 +79,10 @@ photo credit : Pokébiome 004: Charmander (Pinterest)
 - The user enters the data by filling the form in the master component.
 - When the submit button is clicked
     - the function sends the data to pokemon-actions.js
-        - which invokes the method to send the data to pokemon-service.js, which posts the data to the API.
-        - once posted, the data is dispatched to pokemon-method.js, 
-        - where the type is mapped to pokemon-types & payload is mapped to the data and sent to pokemon-reducer.js
-        - where the switch function separates the pokemon types and returns the updated state along with the payload and sends it to the store. 
-        - If multiple reducers are used, then combine-reducer combines the payloads and stores it in the store.
+    - which invokes the method to send the data to pokemon-service.js, which posts the data to the API.
+    - once posted, the data is dispatched to pokemon-method.js, 
+    - where the type is mapped to pokemon-types & payload is mapped to the data and sent to pokemon-reducer.js
+    - where the switch function separates the pokemon types and returns the updated state along with the payload and sends it to the store. 
+    - If multiple reducers are used, then combine-reducer combines the payloads and stores it in the store.
 - The data from the API is fetched from the store using mapToProps, which updates the state & payload to the master & display components.
 - In the master, when the user performs an edit/update or delete action by clicking the respective buttons, the state is updated in the same manner.

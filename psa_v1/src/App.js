@@ -1,12 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import HomeComponent from './user_defined/components/home';
+import NavbarComponent from './user_defined/components/navbar';
 
 function App() {
   return (
     <div>
-      <HomeComponent/>
+      <NavbarComponent/>
     </div>
   );
 }
