@@ -1,6 +1,7 @@
 # Pokémon Search Application
 
-![Pokébiome 004: Charmander: pinterest](https://i.pinimg.com/originals/d3/f9/81/d3f9815826912acabeedb83750ea720a.gif) ![react](psa_v1\assets\react-native-UX-design.gif)
+![Pokébiome 004: Charmander: pinterest](https://github.com/zvdas/PokemonSearchApp/blob/main/psa_v1/assets/pokemon_header.gif) ![react](https://raw.githubusercontent.com/zvdas/PokemonSearchApp/main/psa_v1/assets/react-native-UX-design.gif)
+photo credit : Pokébiome 004: Charmander (Pinterest)
 
 1. Create a new react app by running the following in terminal
     
