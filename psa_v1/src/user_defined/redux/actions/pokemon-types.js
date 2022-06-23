@@ -10,6 +10,6 @@ export const SELECT_DATATYPE = "SELECT_DATATYPE";
 
 export const mapStateToProps = (state) => {
     return {
-        data : state.payload
+        pokemons : state.payload
     }
 }

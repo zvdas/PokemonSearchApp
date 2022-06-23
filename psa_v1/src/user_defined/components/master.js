@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-// import { createPokemon } from '../redux/actions/pokemon-actions';
+import { connect } from 'react-redux';
+import { createPokemon } from '../redux/actions/pokemon-actions';
+import { mapStateToProps } from '../redux/actions/pokemon-types';
 
-export default class master extends Component {
+class Master extends Component {
     constructor(props) {
         
         super(props)
@@ -15,46 +17,26 @@ export default class master extends Component {
         this.pgeneration = React.createRef();
         this.ptype1 = React.createRef();
         this.ptype2 = React.createRef();
-        this.imageString = React.createRef();
 
         this.state = {msg:''};
 
         this.onFileChange = this.onFileChange.bind(this);
 
-        this.onFileUpload = this.onFileUpload.bind(this);
-
         this.savePokemon = this.savePokemon.bind(this);
     }
 
     onFileChange(event){
-        setTimeout(()=>{
-        console.log(`event files : ${JSON.stringify(event.target.files[0])}`)
-        }, 3000)
-        // console.log(`event files : ${event.target} stringified : ${JSON.stringify(event.target.files[0])}`)     
-        /*
-        if(!event.target.files[0]==null){
         let reader  = new FileReader();
         reader.readAsBinaryString(event.target.files[0]);
         reader.onload = () => {
-            this.imageString = btoa(reader.result.toString());
-            console.log(`imagestring : ${JSON.stringify(this.imageString)}`)
-            }
-        }else{
-            console.log('null')
+            this.pimage = btoa(reader.result);
         }
-        */
-    }
-
-    onFileUpload(){
-        /*
-        console.log(`imagestring : ${this.pimage.current.value}`)
-        */
     }
 
     savePokemon(){
         let pokemons = {
             pname : this.pname.current.value,
-            pimage : this.pimage.current.value,
+            pimage : this.pimage,
             pcp : this.pcp.current.value,
             php : this.php.current.value,
             pdefence : this.pdefence.current.value,
@@ -114,7 +96,6 @@ export default class master extends Component {
                             <div className='input-group col-auto'>
                                 <label className='input-group-text' htmlFor='image'>Image</label>
                                 <input type='file' className='form-control' id='image' onChange={this.onFileChange}/>
-                                <button className='btn btn-primary' onClick={this.onFileUpload}>Upload</button>
                             </div>
                         </div>
                         <div className='d-flex row justify-content-center'>
@@ -129,7 +110,37 @@ export default class master extends Component {
                         </div>
                     </div>
                 </div>
+
+                <table className='table table-striped table-hover bg-dark text-white'>
+                    <tr itemScope='col'>
+                        <th>S.No.</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Combat Power (CP)</th>
+                        <th>Hit Points (HP)</th>
+                        <th>Defence</th>
+                        <th>Attack</th>
+                        <th>Generation</th>
+                        <th>Type 1</th>
+                        <th>Type 2</th>
+                    </tr>
+                    {this.props.pokemons.map((pokemon, index) => 
+                    <tr itemScope='row'>
+                        <td className='text-white'>{index+1}</td>
+                        <td>{pokemon.pname}</td>
+                        <td><img src='data:pokemon.pimage' ></img></td>
+                        <td>{pokemon.pcp}</td>
+                        <td>{pokemon.php}</td>
+                        <td>{pokemon.pdefence}</td>
+                        <td>{pokemon.attack}</td>
+                        <td>{pokemon.pgeneration}</td>
+                        <td>{pokemon.ptype1}</td>
+                        <td>{pokemon.ptype2}</td>
+                    </tr>)}
+                </table>
             </div>
         )
     }
 }
+
+export default connect(mapStateToProps, {createPokemon})(Master)
