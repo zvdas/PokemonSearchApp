@@ -11,13 +11,13 @@ class PokemonServices{
         return getDocs(pcoll).then(response=>({data: response.docs.map(doc=>({...doc.data(), id: doc.id}))}));
     }   
     get(id) {
-        return getDoc(doc(db, "pokemons", id)).then(response=>({data:{...response.data(), id: response.id}}));
+        return getDoc(doc(firedb, "pokemons", id)).then(response=>({data:{...response.data(), id: response.id}}));
     }
     update(id, data) {
-        return updateDoc(doc(db, "pokemons", id), data);
+        return updateDoc(doc(firedb, "pokemons", id), data);
     }
     delete(id) {
-        return deleteDoc(doc(db, "pokemons", id));
+        return deleteDoc(doc(firedb, "pokemons", id));
     }
 }
 

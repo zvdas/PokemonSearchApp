@@ -1,4 +1,4 @@
-import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, UPDATE_POKEMON } from "./pokemon-types";
+import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, RETRIEVE_A_POKEMON, UPDATE_POKEMON } from "./pokemon-types";
 
 export const createAPokemon = (data) => {
     return {
@@ -16,7 +16,7 @@ export const getAllPokemons = (data) => {
 
 export const getPokemonById = (data) => {
     return {
-        type : RETRIEVE_POKEMONS,
+        type : RETRIEVE_A_POKEMON,
         payload : data
     }
 }

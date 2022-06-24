@@ -1,13 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Link, Route, Routes } from 'react-router-dom';
 import HomeComponent from './home';
-import MasterComponent from './master';
+// import MasterComponent from './master';
+import MasterFirestoreComponent from './master-firestore';
 import CreditsComponent from './credits';
 
 export default function NavbarComponent() {
  
     return (
-        <BrowserRouter>
+        <HashRouter>
+        {/* <BrowserRouter> */}
             <nav className="navbar navbar-expand-lg bg-warning">
                 <div className="container-fluid">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
@@ -32,9 +34,11 @@ export default function NavbarComponent() {
             
             <Routes>
                 <Route exact path="/home" element={<HomeComponent/>}/>
-                <Route exact path="/master" element={<MasterComponent/>}/>
+                {/* <Route exact path="/master" element={<MasterComponent/>}/> */}
+                <Route exact path="/master" element={<MasterFirestoreComponent/>}/>
                 <Route exact path="/credits" element={<CreditsComponent/>}/>
             </Routes>   
-        </BrowserRouter>
+        {/* </BrowserRouter> */}
+        </HashRouter>
     )
 }
