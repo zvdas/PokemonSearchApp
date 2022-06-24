@@ -1,5 +1,5 @@
-import pokemonServices from "../../services/pokemon-service";
-import { createAPokemon, getAllPokemons, getPokemonById, updatePokemonById, deletePokemonById, getPokemonByGeneration, getSelectedDataType } from "./pokemon-methods";
+import pokemonServices from "../../services/pokemon-firestore-service";
+import { createAPokemon, getAllPokemons, getPokemonById } from "./pokemon-methods";
 
 export const createPokemon = (pokemons) => {
     return (dispatch) =>{
@@ -35,7 +35,7 @@ export const updatePokemon = (id, data) => {
     return (dispatch) => {
         return pokemonServices.update(id, data)
         .then(response => {
-            dispatch(updatePokemonById(response.data))
+            dispatch(retrievePokemons(response.data))
         })
         .catch(err => {throw(err)})
     }
@@ -45,24 +45,8 @@ export const deletePokemon = (id) => {
     return (dispatch) => {
         return pokemonServices.delete(id)
         .then(response => {
-            dispatch(deletePokemonById(response.data))
+            dispatch(retrievePokemons(response.data))
         })
         .catch(err => {throw(err)})
-    }
-}
-
-export const findPokemonByGeneration = (generation) => {
-    return (dispatch) => {
-        return pokemonServices.findByGeneration(generation)
-        .then(response => {
-            dispatch(getPokemonByGeneration(response.data))
-        })
-        .catch(err => {throw(err)})
-    }
-}
-
-export const selectDataTypes = (info) =>{
-    return (dispatch) => {
-        dispatch(getSelectedDataType(info))
     }
 }

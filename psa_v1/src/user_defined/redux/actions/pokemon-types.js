@@ -6,8 +6,6 @@ export const UPDATE_POKEMON = "UPDATE_POKEMON";
 
 export const DELETE_POKEMON = "DELETE_POKEMON";
 
-export const SELECT_DATATYPE = "SELECT_DATATYPE";
-
 export const mapStateToProps = (state) => {
     return {
         pokemons : state.payload

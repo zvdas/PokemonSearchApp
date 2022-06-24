@@ -1,4 +1,4 @@
-import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, UPDATE_POKEMON, SELECT_DATATYPE } from "../actions/pokemon-types";
+import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, UPDATE_POKEMON } from "../actions/pokemon-types";
 
 export default function PokemonReducer(state=[], action){
     switch(action.type){
@@ -8,13 +8,11 @@ export default function PokemonReducer(state=[], action){
             return action.payload
         case UPDATE_POKEMON:
             if(state.id === action.payload.id){
-                return {...state, ...action.payload}
+                return [...state, ...action.payload]
             }else{
                 return state
             }
         case DELETE_POKEMON:
-            return action.payload
-        case SELECT_DATATYPE:
             return action.payload
         default:
             return state

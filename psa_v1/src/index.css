@@ -5,13 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* #ffcb05; */
   background-image: url('https://images.unsplash.com/photo-1628968434441-d9c1c66dcde7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-  /*
-    Photo by <a href="https://unsplash.com/@rocinante_11?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mick Haupt</a> on <a href="https://unsplash.com/s/photos/pokemon-cards?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-    Photo by Mick Haupt on Unsplash
-    https://unsplash.com/photos/KtTF68ZjBak?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
-  */
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% calc(100%);

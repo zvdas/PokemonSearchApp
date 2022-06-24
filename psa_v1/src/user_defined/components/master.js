@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPokemon } from '../redux/actions/pokemon-actions';
+import { createPokemon, updatePokemon, deletePokemon } from '../redux/actions/pokemon-actions';
 import { mapStateToProps } from '../redux/actions/pokemon-types';
+import noimage from '../../assets/no-image-available.png';
 
 class Master extends Component {
     constructor(props) {
@@ -17,12 +18,12 @@ class Master extends Component {
         this.pgeneration = React.createRef();
         this.ptype1 = React.createRef();
         this.ptype2 = React.createRef();
+        this.selectedid = React.createRef();
 
-        this.state = {msg:''};
+        this.state = {msg:'', selectedimage:''};
 
         this.onFileChange = this.onFileChange.bind(this);
 
-        this.savePokemon = this.savePokemon.bind(this);
     }
 
     onFileChange(event){
@@ -30,6 +31,7 @@ class Master extends Component {
         reader.readAsBinaryString(event.target.files[0]);
         reader.onload = () => {
             this.pimage = btoa(reader.result);
+            this.setState({selectedimage: this.pimage});
         }
     }
 
@@ -50,12 +52,68 @@ class Master extends Component {
 
         this.setState({msg : 'Pokémon Created Successfully'});
     }
+
+    getPokemonById(id){
+        this.selectedid = id;
+        this.pname.current.value = this.props.pokemons[id-1].pname;
+        this.setState({selectedimage: this.props.pokemons[id-1].pimage});
+        this.pcp.current.value = this.props.pokemons[id-1].pcp;
+        this.php.current.value = this.props.pokemons[id-1].php;
+        this.pdefence.current.value = this.props.pokemons[id-1].pdefence;
+        this.pattack.current.value = this.props.pokemons[id-1].pattack;
+        this.pgeneration.current.value = this.props.pokemons[id-1].pgeneration;
+        this.ptype1.current.value = this.props.pokemons[id-1].ptype1;
+        this.ptype2.current.value = this.props.pokemons[id-1].ptype2;
+    }
+
+    updatePokemon(){
+        let pokemons = {
+            pname : this.pname.current.value,
+            pimage : this.pimage,
+            pcp : this.pcp.current.value,
+            php : this.php.current.value,
+            pdefence : this.pdefence.current.value,
+            pattack : this.pattack.current.value,
+            pgeneration : this.pgeneration.current.value, 
+            ptype1 : this.ptype1.current.value,
+            ptype2 : this.ptype2.current.value
+        }
+
+        this.props.updatePokemon(this.selectedid, pokemons);
+
+        this.setState({msg:'Pokémon Updated Successfully'});
+    }
+
+    deletePokemonById(){
+        this.props.deletePokemon(this.selectedid);
+        this.setState({msg:'Pokémon Deleted Successfully'});
+    }
+
+    clearFields(){
+        this.pname.current.value = '';
+        this.setState({selectedimage: ''});
+        this.pcp.current.value = '';
+        this.php.current.value = '';
+        this.pdefence.current.value = '';
+        this.pattack.current.value = '';
+        this.pgeneration.current.value = '';
+        this.ptype1.current.value = '';
+        this.ptype2.current.value = '';
+    }
   
     render() {
+        let img
+        if(!this.state.selectedimage){
+            img = <img src={noimage} height={'50px'} width={'50px'} alt='pokepic'/>;
+        }
+        else{
+            img = <img src={'data:image/png;base64,'+this.state.selectedimage} height={'100px'} width={'100px'} alt='pokepic'/>;
+        }
+
         return (
             <div className='container'>
-                <div className='card bg-dark m-3'>
-                    <div className='card-contents m-3 text-white'>
+                <div className='card bg-warning m-3'>
+                    <div className='card-contents m-3 text-danger'>
                         <div className='d-flex row justify-content-center'>
                             <div className='col-auto'>
                                 <label htmlFor='pname' className='form-label'>Name</label>
@@ -94,13 +152,25 @@ class Master extends Component {
                         </div>
                         <div className='d-flex row justify-content-center my-5 mx-5 px-3'>
                             <div className='input-group col-auto'>
-                                <label className='input-group-text' htmlFor='image'>Image</label>
-                                <input type='file' className='form-control' id='image' onChange={this.onFileChange}/>
+                                <label className='input-group-text text-danger' htmlFor='image'>Image</label>
+                                <input type='file' className='form-control text-danger' id='image' onChange={this.onFileChange}/>
                             </div>
                         </div>
                         <div className='d-flex row justify-content-center'>
-                            <div className='col-auto'>
-                                <button className='btn btn-primary' onClick={this.savePokemon}>Submit</button>
+                            <div className='col-auto justify-content-left mx-5'>
+                                <button className='btn btn-primary text-warning bg-danger' onClick={()=>this.clearFields()}>Clear</button>
+                            </div>
+                            <div className='col-auto justify-content-left mx-5'>
+                                <button className='btn btn-primary text-warning bg-danger' onClick={()=>this.savePokemon()}>Create</button>
+                            </div>
+                            <div className='col-auto justify-content-center mx-5 bg-danger'>
+                                {img}
+                            </div>
+                            <div className='col-auto justify-content-right mx-5'>
+                                <button className='btn btn-primary text-warning bg-danger' onClick={()=>this.updatePokemon()}>Update</button>
+                            </div>
+                            <div className='col-auto justify-content-right mx-5'>
+                                <button className='btn btn-primary text-warning bg-danger'onClick={()=>this.deletePokemonById()}>Delete</button>
                             </div>
                         </div>
                         <div className='d-flex row justify-content-center'>
@@ -111,36 +181,44 @@ class Master extends Component {
                     </div>
                 </div>
 
-                <table className='table table-striped table-hover bg-dark text-white'>
-                    <tr itemScope='col'>
-                        <th>S.No.</th>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Combat Power (CP)</th>
-                        <th>Hit Points (HP)</th>
-                        <th>Defence</th>
-                        <th>Attack</th>
-                        <th>Generation</th>
-                        <th>Type 1</th>
-                        <th>Type 2</th>
-                    </tr>
-                    {this.props.pokemons.map((pokemon, index) => 
-                    <tr itemScope='row'>
-                        <td className='text-white'>{index+1}</td>
-                        <td>{pokemon.pname}</td>
-                        <td><img src='data:pokemon.pimage' ></img></td>
-                        <td>{pokemon.pcp}</td>
-                        <td>{pokemon.php}</td>
-                        <td>{pokemon.pdefence}</td>
-                        <td>{pokemon.attack}</td>
-                        <td>{pokemon.pgeneration}</td>
-                        <td>{pokemon.ptype1}</td>
-                        <td>{pokemon.ptype2}</td>
-                    </tr>)}
+                <table className='table table-hover bg-warning text-danger'>
+                    <thead>
+                        <tr itemScope='col'>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Combat Power (CP)</th>
+                            <th>Hit Points (HP)</th>
+                            <th>Defence</th>
+                            <th>Attack</th>
+                            <th>Generation</th>
+                            <th>Type 1</th>
+                            <th>Type 2</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.pokemons.map((pokemon, index) => 
+                        <tr itemScope='row'  key={pokemon.id}>
+                            <td>{index+1}</td>
+                            <td>{pokemon.pname}</td>
+                            <td><img src={'data:image/png;base64,'+pokemon.pimage} height={"100px"} width={"100px"} alt="pokepic"/></td>
+                            <td>{pokemon.pcp}</td>
+                            <td>{pokemon.php}</td>
+                            <td>{pokemon.pdefence}</td>
+                            <td>{pokemon.pattack}</td>
+                            <td>{pokemon.pgeneration}</td>
+                            <td>{pokemon.ptype1}</td>
+                            <td>{pokemon.ptype2}</td>
+                            <td>
+                                <button className='btn btn-primary m-2 text-warning bg-danger' onClick={()=>this.getPokemonById(pokemon.id)}>Select</button>
+                            </td>
+                        </tr>)}
+                    </tbody>
                 </table>
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, {createPokemon})(Master)
+export default connect(mapStateToProps, {createPokemon, updatePokemon, deletePokemon})(Master)

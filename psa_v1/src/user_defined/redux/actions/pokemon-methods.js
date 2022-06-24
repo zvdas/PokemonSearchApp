@@ -1,4 +1,4 @@
-import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, SELECT_DATATYPE, UPDATE_POKEMON } from "./pokemon-types";
+import { CREATE_POKEMON, DELETE_POKEMON, RETRIEVE_POKEMONS, UPDATE_POKEMON } from "./pokemon-types";
 
 export const createAPokemon = (data) => {
     return {
@@ -29,23 +29,8 @@ export const updatePokemonById = (data) => {
 }
 
 export const deletePokemonById = (id) => {
-    console.log(`inside Pokemon methods : id ${id}`)
     return {
         type : DELETE_POKEMON,
         payload : id
-    }
-}
-
-export const getPokemonByGeneration = (data) => {
-    return {
-        type : RETRIEVE_POKEMONS,
-        payload : data
-    }
-}
-
-export const getSelectedDataType = (data) => {
-    return {
-        type : SELECT_DATATYPE,
-        payload : data
     }
 }
