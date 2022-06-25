@@ -102,7 +102,6 @@ class MasterFirestoreComponent extends Component {
         this.pgeneration.current.value = '';
         this.ptype1.current.value = '';
         this.ptype2.current.value = '';
-        retrievePokemons();
     }
   
     render() {
