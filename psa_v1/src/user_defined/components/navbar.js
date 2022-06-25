@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, HashRouter, Link, Route, Routes } from 'react-router-dom';
+import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import HomeComponent from './home';
 // import MasterComponent from './master';
 import MasterFirestoreComponent from './master-firestore';
@@ -15,7 +15,7 @@ export default function NavbarComponent() {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
                         <li className="d-flex justify-content-left nav-item mx-5">
                             <button className="nav-link btn btn-outline bg-danger" data-bs-toggle="tab">
-                                <Link to={'/home'} className="text-warning text-decoration-none">Home</Link>
+                                <Link to={'/'} className="text-warning text-decoration-none">Home</Link>
                             </button>
                         </li>
                         <li className="nav-item mx-5">
@@ -31,7 +31,6 @@ export default function NavbarComponent() {
                     </ul>
                 </div>
             </nav>
-            
             <Routes>
                 <Route exact path="/home" element={<HomeComponent/>}/>
                 {/* <Route exact path="/master" element={<MasterComponent/>}/> */}

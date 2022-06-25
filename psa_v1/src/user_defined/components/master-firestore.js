@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPokemon, findPokemonById, updatePokemon, deletePokemon } from '../redux/actions/pokemon-actions';
+import { createPokemon, findPokemonById, updatePokemon, deletePokemon, retrievePokemons } from '../redux/actions/pokemon-actions';
 import { mapStateToProps } from '../redux/actions/pokemon-types';
 import noimage from '../../assets/no-image-available.png';
 
@@ -102,6 +102,7 @@ class MasterFirestoreComponent extends Component {
         this.pgeneration.current.value = '';
         this.ptype1.current.value = '';
         this.ptype2.current.value = '';
+        retrievePokemons();
     }
   
     render() {
