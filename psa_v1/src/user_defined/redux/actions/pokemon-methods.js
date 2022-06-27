@@ -34,3 +34,10 @@ export const deletePokemonById = (id) => {
         payload : id
     }
 }
+
+export const getPokemonByName = (data) => {
+    return {
+        type : RETRIEVE_POKEMONS,
+        payload : data
+    }
+}

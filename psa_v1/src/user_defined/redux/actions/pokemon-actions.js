@@ -1,5 +1,5 @@
 import pokemonServices from "../../services/pokemon-firestore-service";
-import { getAllPokemons, getPokemonById } from "./pokemon-methods";
+import { getAllPokemons, getPokemonById, getPokemonByName } from "./pokemon-methods";
 
 export const createPokemon = (pokemons) => {
     return (dispatch) =>{
@@ -46,6 +46,16 @@ export const deletePokemon = (id) => {
         return pokemonServices.delete(id)
         .then(response => {
             dispatch(getAllPokemons(response.data))
+        })
+        .catch(err => {throw(err)})
+    }
+}
+
+export const findPokemonByName = (name) => {
+    return (dispatch) => {
+        return pokemonServices.findByName(name)
+        .then(response => {
+            dispatch(getPokemonByName(response.data))
         })
         .catch(err => {throw(err)})
     }

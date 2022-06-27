@@ -269,4 +269,4 @@ class MasterFirestoreComponent extends Component {
     }
 }
 
-export default connect(mapStateToProps, {createPokemon, findPokemonById, updatePokemon, deletePokemon})(MasterFirestoreComponent)
+export default connect(mapStateToProps, {createPokemon, retrievePokemons, findPokemonById, updatePokemon, deletePokemon})(MasterFirestoreComponent)

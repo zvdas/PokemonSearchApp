@@ -1,5 +1,5 @@
 import firedb from "../configurations/firebase";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 
 let pcoll = collection(firedb, "pokemons");
 
@@ -18,6 +18,9 @@ class PokemonServices{
     }
     delete(id) {
         return deleteDoc(doc(firedb, "pokemons", id));
+    }
+    findByName(name) {
+        return getDocs(query(pcoll, where("pname", "==", name))).then(response=>({data: response.docs.map(doc=>({...doc.data(), id: doc.id}))}));
     }
 }
 
